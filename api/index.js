@@ -19,16 +19,13 @@ const MongoApi = process.env.MONGO_API_KEY;
 const salt = bcrypt.genSaltSync(10);
 const secret = 'agsdgsgas';
 
-app.use(cors({credentials: true, origin:'http://localhost:3000'}));
+app.use(cors({credentials: true, origin:'https://mmaomen.com'}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect(MongoApi, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected successfully'))
-    .catch(err => console.log('MongoDB connection error:', err));
+mongoose.connect(MongoApi)
 
-console.log('MongoApi:', MongoApi);
 
 app.post('/register', async (req,res) => {
     const {username,password,admin} = req.body;
@@ -177,7 +174,6 @@ app.get('/profile', (req, res) => {
   app.get('/admin', async (req, res) => {
   try {
     const users = await User.find();
-   // console.log(users)
     res.json(users);
   } catch (error) {
     console.error(error);
