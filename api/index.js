@@ -19,7 +19,7 @@ const MongoApi = process.env.MONGO_API_KEY;
 const salt = bcrypt.genSaltSync(10);
 const secret = 'agsdgsgas';
 
-app.use(cors({credentials: true, origin:'https://mmaomen.com'}));
+app.use(cors({credentials: true, origin:'https://mma-omen.onrender.com/'}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
