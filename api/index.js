@@ -293,4 +293,4 @@ app.post('/contact', async (req, res) => {
   }
 });
   
-  app.listen('https://mma-omen-font-end.onrender.com/');
+  app.listen('https://mma-omen-api.onrender.com/');
