@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import CommentsList from "./CommentList";
 
