@@ -17,7 +17,7 @@ const MongoApi = process.env.MONGO_API_KEY;
 
 
 const salt = bcrypt.genSaltSync(10);
-const secret = process.env.SECRET;
+const secret = 'agsdgsgas';
 
 app.use(cors({credentials: true, origin:'https://mma-omen-font-end.onrender.com/'}));
 app.use(express.json());
