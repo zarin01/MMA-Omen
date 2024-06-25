@@ -7,19 +7,23 @@ const Post = require('./models/Post.js');
 const bcrypt = require('bcryptjs');
 const app = express();
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/'});
 const fs = require('fs');
 const CommentModel = require('./models/CommentPost.js');
 const MongoApi = process.env.MONGO_API_KEY;
-
+const PORT = process.env.PORT || 4000;
+const ORGIN = process.env.PORT || 3000;
 
 
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.SECRET;
 
-app.use(cors({credentials: true, origin:'https://mma-omen-font-end.onrender.com/'}));
+
+app.use('/', express.static(path.join(__dirname, '/client/src')))
+app.use(cors({credentials: true, origin: ORGIN}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -293,4 +297,7 @@ app.post('/contact', async (req, res) => {
   }
 });
   
-  app.listen('https://mma-omen-api.onrender.com/');
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB')
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+})
